@@ -1,6 +1,6 @@
 # DrRacket autosave files
-*.rkt~
-*.rkt.bak
+*~
+*.bak
 \#*.rkt#
 \#*.rkt#*#
 
