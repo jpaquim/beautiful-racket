@@ -1,5 +1,6 @@
 #lang br
-(require brag/support syntax-color/racket-lexer)
+(require brag/support syntax-color/racket-lexer
+         racket/contract)
 
 (define jsonic-lexer
   (lexer
@@ -28,4 +29,21 @@
        (racket-lexer port))
      (values str cat paren start end 0 #t)]))
 
-(provide color-jsonic)
+(provide
+ (contract-out
+  [color-jsonic
+   (input-port? exact-nonnegative-integer? boolean?
+                . -> . (values
+                        (or/c string? eof-object?)
+                        symbol?
+                        (or/c symbol? #f)
+                        (or/c exact-positive-integer? #f)
+                        (or/c exact-positive-integer? #f)
+                        exact-nonnegative-integer?
+                        boolean?))]))
+
+(module+ test
+  (require rackunit)
+  (check-equal? (values->list
+                 (color-jsonic (open-input-string "x") 0 #f))
+                (list "x" 'string #f 1 2 0 #f)))
