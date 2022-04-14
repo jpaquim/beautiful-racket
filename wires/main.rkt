@@ -29,11 +29,12 @@
       (module+ main
         (displayln (format "~a: ~a" 'ID (ID))))))
 
-(define val-cache (make-hash))
-(define (val num-or-wire)
-  (if (number? num-or-wire)
-      num-or-wire
-      (hash-ref! val-cache num-or-wire (num-or-wire))))
+(define val
+  (let ([val-cache (make-hash)])
+    (lambda (num-or-wire)
+      (if (number? num-or-wire)
+          num-or-wire
+          (hash-ref! val-cache num-or-wire (num-or-wire))))))
 
 (define (mod-16bit x) (modulo x 65536))
 (define-macro (define-16bit ID PROC-ID)
