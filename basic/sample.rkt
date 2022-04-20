@@ -1,4 +1,4 @@
-#lang basic
+#lang basic/parse-only
 30 rem print 'ignored'
 35
 50 print "never gets here"
