@@ -6,7 +6,7 @@
 (define-lex-abbrev reserved-terms (:or "print" "goto" "end" "+"
                                        ":" ";" "let" "=" "input" "-" "*" "/" "^" "mod" "(" ")"
                                        "if" "then" "else" "<" ">" "<>" "and" "or" "not" "gosub"
-                                       "return" "for" "to" "step" "next" "def" "," "import"))
+                                       "return" "for" "to" "step" "next" "def" "," "import" "export"))
 
 (define-lex-abbrev racket-id-kapu
   (:or whitespace (char-set "()[]{}\",'`;#|\\")))
